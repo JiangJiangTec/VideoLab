@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-public class RenderLayer: Animatable {
+open class RenderLayer: Animatable {
     public var timeRange: CMTimeRange
 
     public var layerLevel: Int = 0
@@ -19,7 +19,7 @@ public class RenderLayer: Animatable {
     
     public var audioConfiguration: AudioConfiguration = AudioConfiguration()
     
-    let source: Source?
+    public let source: Source?
 
     public init(timeRange: CMTimeRange, source: Source? = nil) {
         self.timeRange = timeRange
