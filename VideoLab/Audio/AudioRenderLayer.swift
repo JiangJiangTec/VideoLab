@@ -149,6 +149,11 @@ class AudioRenderLayer {
 
 extension RenderLayer {
     @objc func canBeConvertedToAudioRenderLayer() -> Bool {
-        return source?.tracks(for: .audio).first != nil
+        let res = source?.tracks(for: .audio).first != nil
+        // 静音的片段无需添加到轨道
+        if self.audioConfiguration.volumeRamps.count == 1, let audioConfig = self.audioConfiguration.volumeRamps.first, audioConfig.startVolume == 0 && audioConfig.endVolume == 0 {
+            return false
+        }
+        return res
     }
 }
